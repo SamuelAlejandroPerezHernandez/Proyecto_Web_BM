@@ -41,19 +41,19 @@ function Footer() {
                 <h2 className="footer__title">Contactanos</h2>
                 <div className="contact__wrapper">
                     <div className="img_social_network">
-                        <img src="../img/facebook.png" alt="facebook"/>
+                        <img src="/Img/facebook.png" alt="facebook"/>
                     </div>
                     <div className="img_social_network">
-                        <img src="../img/instagram.png" alt="instagram"/>
+                        <img src="/Img/instagram.png" alt="instagram"/>
                     </div>
                     <div className="img_social_network">
-                        <img src="../img/youtube.png" alt="linkedin"/>
+                        <img src="/Img/youtube.png" alt="linkedin"/>
                     </div >
                     <div className="img_social_network">
-                        <img src="../img/signo-de-twitter.png"/>
+                        <img src="/Img/signo-de-twitter.png"/>
                     </div>
                     <div className="img_social_network">
-                        <img src="../img/whatsapp.png"/>
+                        <img src="/Img/whatsapp.png"/>
                     </div>
                 </div>
             </div>
@@ -62,3 +62,5 @@ function Footer() {
 
     )
 }
+
+export default Footer;

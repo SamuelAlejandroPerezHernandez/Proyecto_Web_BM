@@ -1,4 +1,4 @@
-function Categories() {
+function Categorias() {
     return (
         <section className="categories">
         <div className="categories__info__container">
@@ -38,4 +38,4 @@ function Categories() {
     )
 }
 
-export default Categories;
+export default Categorias;
