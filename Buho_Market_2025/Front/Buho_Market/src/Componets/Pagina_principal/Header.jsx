@@ -1,5 +1,6 @@
 import { UserAuth } from "../../context/AuthContext.jsx";
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
     const { signout } = UserAuth();
@@ -98,7 +99,7 @@ function Header() {
                 <ul className="nav__list__item">
                     <li className="nav_item">
                         <img className="nav__img"/>
-                        <a className="nav_link" href="#">Inicio</a>
+                        <Link className="nav_link" to="/">Inicio</Link>
                     </li>
                     <li className="nav_item">
                         <img className="nav__img"/>
@@ -110,7 +111,7 @@ function Header() {
                     </li>
                     <li className="nav_item">
                         <img className="nav__img"/>
-                        <a className="nav_link" href="#">Publicar</a>
+                        <Link className="nav_link" to="/publicaciones">Publicar</Link>
                     </li>
                     <li className="nav_item">
                         <img className="nav__img"/>
