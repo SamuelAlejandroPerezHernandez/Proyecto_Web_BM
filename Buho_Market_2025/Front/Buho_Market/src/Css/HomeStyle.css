@@ -33,6 +33,7 @@
     height: auto;
     margin: 0;
     padding-right: 1%;
+    cursor: pointer;
 }
 
 .web__name{
@@ -334,6 +335,8 @@ button:hover{
     0 0 30px rgba(255, 255, 255, 0.4);
 }
 
+/*----------------------------------------------*/
+
 .category{
     background-color: rgba(88, 88, 88, 0.678);
     display: flex;
@@ -402,6 +405,8 @@ button:hover{
 .category_paragraph.active{
     display: block;
 }
+
+/*----------------------------------------------*/
 
 .footer__web{
     background-color: rgb(29, 29, 29);
@@ -560,7 +565,26 @@ button:hover{
     height: auto;
     position: relative;
     overflow-x: clip;
-    }
+}
+
+.web__header::after{
+    content:"";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 3px;
+    background: linear-gradient(90deg,
+        #ff007a, #00ffea, #7c5cff, #ffea00, #ff007a
+    );
+    background-size: 300% 100%;
+    animation: neon-scan 6s linear infinite;
+    filter: drop-shadow(0 0 10px rgba(0,255,234,0.7));
+    pointer-events: none;
+}
+
+@keyframes neon-scan{
+    0%   { background-position: 0% 0; }
+    100% { background-position: 300% 0; }
+}
 
 .header__presentation{
     display: flex;
@@ -666,6 +690,8 @@ button:hover{
     cursor: pointer;
     overflow: hidden;
 }
+
+
 
 .menu__open{
     display: block;
@@ -801,14 +827,14 @@ button:hover{
         rgba(0, 0, 0, 0.2),
         rgba(0, 0, 0, 0.2)
     )
-    , url("/Img/Hero.png");
+    , url("/Img/New_And_Last_Banner.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     color: rgb(255, 255, 255);
     text-align: center;
     width: 100%;
@@ -829,6 +855,13 @@ button:hover{
     0 0 30px rgba(255, 0, 0, 0.4);
 }
 
+.button_container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-left: 17%;
+}
+
 button{
     background-color: rgb(0, 0, 0);
     border: 5px solid rgb(255, 0, 0);
@@ -845,8 +878,11 @@ button:hover{
     background-color: rgb(165, 33, 33);
 }
 
+
+
 .categories{
-    background-image: url("/Img/Fondo_contenedor_categorias_blackVersion2.png");
+    background-image: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),  /* oscurece */
+    url("/Img/back_coin.png");
     background-size: cover; 
     background-position: center;
     background-attachment: fixed;
@@ -917,6 +953,11 @@ button:hover{
     margin: 0;
     padding: 2%;
     gap: 2vw;
+
+    border: 1px solid rgba(255,255,255,.12);           /* borde sutil para definición */
+    box-shadow:
+    0 2px 6px rgba(0,0,0,.25),                       /* sombra base */
+    inset 0 1px 2px rgba(255,255,255,.06);
 }
 
 .category.active{
@@ -926,7 +967,7 @@ button:hover{
     justify-content: center;
     align-items: center;
     width: clamp(50px, 65vw, 300px);
-    height: auto;
+    height: 500px;
     border-radius: 20%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     transition: transform 0.3s ease;
@@ -939,6 +980,10 @@ button:hover{
 .category:hover{
     transform: scale(1.05);
     background-color: rgba(143, 143, 143, 0.738);
+    box-shadow:
+    0 4px 10px rgba(0,0,0,.20),        
+    0 0 14px rgba(255,213,74,.35),      
+    0 0 28px rgba(255,213,74,.22); 
 }
 
 .category:hover h3{
@@ -1094,17 +1139,27 @@ button:hover{
     align-items: center;
     width: clamp(20px, 20%, 55px);
     height: auto;
+    border-radius: 50%;
+    background-color: white;
+
+    border: 1px solid rgba(255,255,255,.12);          
+    box-shadow:
+    0 2px 6px rgba(0,0,0,.25),                      
+    inset 0 1px 2px rgba(255,255,255,.06);
 }
 
 .img_social_network img{
     width: 100%;
     height: auto;
     cursor: pointer;
-
 }
 
-.img_social_network img:hover{
+.img_social_network:hover{
     transform: scale(1.4);
+    border: 1px solid rgba(81, 255, 0, 0.12);          
+    box-shadow:
+    0 2px 6px rgba(0,0,0,.25),                      
+    inset 0 1px 2px rgba(255,255,255,.06);
 }
 
 }

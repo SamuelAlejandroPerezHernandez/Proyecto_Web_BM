@@ -5,6 +5,7 @@ import Registrarse from '../Pages/Registrarse';
 import Home from "../Pages/Home.jsx";     
 import RecuperearContrasena from '../Pages/RecuperarContrasena';
 import Publicaciones from '../Pages/Publicaciones.jsx';
+import VerPublicaciones from '../Pages/VerPublicaciones.jsx';
 
 export default function MyRoutes() {
   return (
@@ -14,6 +15,7 @@ export default function MyRoutes() {
       <Route path="/registrarse" element={<Registrarse />} />
       <Route path="/recuperarcontrasena" element={<RecuperearContrasena />} />
       <Route path="/publicaciones" element={<Publicaciones/>}/>
+      <Route path="/ver-publicaciones" element={<VerPublicaciones/>}/>
     </Routes>
   );
 }

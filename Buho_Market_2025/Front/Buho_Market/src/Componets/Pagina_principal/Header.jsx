@@ -1,6 +1,8 @@
 import { UserAuth } from "../../context/AuthContext.jsx";
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../../supabase/supabase.js";
+import { useState, useEffect } from 'react';
 
 function Header() {
     const { signout } = UserAuth();
@@ -18,6 +20,43 @@ function Header() {
             console.log(error);
         }
     }
+
+    const [user, setUser] = useState("usuario");
+    /*const [userImage, setUserImage] = useState("/Img/user.png");*/
+
+    const usuario = async () => {
+        const resultado = await supabase
+        .auth
+        .getUser()
+
+        if(resultado.data !== null && resultado.data.user !==null) {
+            const user = resultado.data.user;
+            /*let userIMG = "/Img/user.png";*/
+            let nombreUsuario = 'nombre usuario'
+
+            if(user.user_metadata && user.user_metadata.full_name){
+                nombreUsuario = user.user_metadata.full_name;
+            }
+            else if(user.email) {
+                const partes = user.email.split("@");
+                nombreUsuario = partes[0];
+            }
+
+            /*if(user.user_metadata && user.user_metadata.avatar_url){
+                userIMG = user.user_metadata.avatar_url
+            }*/
+
+            setUser(nombreUsuario);
+            /*setUserImage(userIMG)*/
+        }
+        else {
+            setUser('user Name')
+        }
+    }
+
+    useEffect(() => {
+        usuario();
+    }, []);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -61,10 +100,16 @@ function Header() {
         inputState = 'input__search'
     }
 
+    const navigate = useNavigate();
+
+    const ir = () => {
+        navigate('/')
+    }
+
     return (
         <header className="web__header">
         <div className="header__presentation">
-            <img className="web__logo" src="/Img/new_logo.jpeg" alt="web__logo"/>
+            <img className="web__logo" onClick={ir} src="/Img/new_logo.jpeg" alt="web__logo"/>
             <h1 className="web__name">Buho <span>Market</span></h1>
         </div>
         <div className="buscador__menu">
@@ -94,7 +139,7 @@ function Header() {
             <div className="drop__down__wrapper">
                 <div className="user__info">
                     <img className="user__foto" src="/Img/user.png"/>
-                    <h2 className="user__name">USER NAME</h2>
+                    <h2 className="user__name">{user}</h2>
                 </div>
                 <ul className="nav__list__item">
                     <li className="nav_item">
