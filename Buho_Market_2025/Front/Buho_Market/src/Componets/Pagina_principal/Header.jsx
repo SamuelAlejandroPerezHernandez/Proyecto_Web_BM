@@ -143,27 +143,38 @@ function Header() {
                 </div>
                 <ul className="nav__list__item">
                     <li className="nav_item">
-                        <img className="nav__img"/>
+                        <div className="imgContainer">
+                            <img className="nav__img" src="/Img/home.webp"/>
+                        </div>
+
                         <Link className="nav_link" to="/">Inicio</Link>
                     </li>
                     <li className="nav_item">
-                        <img className="nav__img"/>
+                        <div className="imgContainer">
+                            <img className="nav__img" src="/Img/usuario.png"/>
+                        </div>
+                        
                         <a className="nav_link" href="#">Perfil</a>
                     </li>
                     <li className="nav_item">
-                        <img className="nav__img"/>
+                        <div className="imgContainer">
+                            <img className="nav__img" src="/Img/menu.png"/>
+                        </div>
+
                         <a className="nav_link" href="#">Categorías</a>
                     </li>
                     <li className="nav_item">
-                        <img className="nav__img"/>
+                        <div className="imgContainer">
+                            <img className="nav__img" src="/Img/subir.png"/>
+                        </div>
+
                         <Link className="nav_link" to="/publicaciones">Publicar</Link>
                     </li>
                     <li className="nav_item">
-                        <img className="nav__img"/>
-                        <a className="nav_link" href="#">Metodos de pago</a>
-                    </li>
-                    <li className="nav_item">
-                        <img className="nav__img"/>
+                        <div className="imgContainer">
+                            <img className="nav__img" src="/Img/cerrar.png"/>
+                        </div>
+
                         <a className="nav_link" href="#" onClick={ CerrarSesion }> Cerrar sesion </a>
                     </li>
                 </ul>

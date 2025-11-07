@@ -10,9 +10,11 @@ function Hero() {
 
     return (
     <section id="hero">
-        <h1>Encuentra todo lo que necesitas en <br/> <span>"Buho Market"</span></h1>
-        <div className='button_container'>
-            <button onClick={verPublicaciones_route}>VER PUBLICACIONES</button>
+        <div className='heroWrapper'>
+            <h1>Encuentra todo lo que necesitas en <br/> <span>"Buho Market"</span></h1>
+            <div className='button_container'>
+                <button onClick={verPublicaciones_route}>VER PUBLICACIONES</button>
+            </div>
         </div>
     </section>
 

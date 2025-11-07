@@ -16,6 +16,7 @@ export default function MyRoutes() {
       <Route path="/recuperarcontrasena" element={<RecuperearContrasena />} />
       <Route path="/publicaciones" element={<Publicaciones/>}/>
       <Route path="/ver-publicaciones" element={<VerPublicaciones/>}/>
+      <Route path="/ver-publicaciones/:categoria" element={<VerPublicaciones/>}/>
     </Routes>
   );
 }

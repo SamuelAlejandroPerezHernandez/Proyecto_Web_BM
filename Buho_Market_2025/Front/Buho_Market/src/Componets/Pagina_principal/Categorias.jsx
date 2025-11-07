@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Categorias() {
+
+    const navigate = useNavigate();
 
     const [verInfo1, setInfo1] = useState(false);
     const [verInfo2, setInfo2] = useState(false);
@@ -66,6 +69,18 @@ function Categorias() {
         mostrarParrafo3 = 'category_paragraph'
     }
 
+    const irTecnologia = () => {
+        navigate("/ver-publicaciones/Tecnología");
+    }
+
+    const irLiteratura = () => {
+        navigate("/ver-publicaciones/Literatura");
+    }
+
+    const irAccesorios = () => {
+        navigate("/ver-publicaciones/Accesorios");
+    }
+
     return (
         <section className="categories">
         <div className="categories__info__container">
@@ -80,7 +95,10 @@ function Categorias() {
                     electrónicos que necesites, desde laptops, auriculares,
                     calculadoras y mucho más.
                     </p>
-                    <button className="category__button" onClick={abrir1}>+ Info</button>
+                    <div className='button__wrappet'>
+                        <button className="category__button" onClick={abrir1}>+</button>
+                        <button onClick={irTecnologia}> ver </button>
+                    </div>
                 </div>
                 <div className={abrirInfo2}>
                     <h3>Literatura</h3>
@@ -88,14 +106,20 @@ function Categorias() {
                     literatura, podras encontrar libros de todas las facultades
                     y todo tipo de temas.
                     </p>
-                    <button className="category__button" onClick={abrir2}>+ Info</button>
+                    <div className='button__wrappet'>
+                        <button className="category__button" onClick={abrir2}>+</button>
+                        <button onClick={irLiteratura}> ver </button>                        
+                    </div>
                 </div>
                 <div className={abrirInfo3}>
                     <h3>Accesorios</h3>
                     <p className={mostrarParrafo3}>En nuestra pagina podras encontrar muchos articulos
                     indespensables como mochilas, loncheras, fundas para laptops.
                     </p>
-                    <button className="category__button" onClick={abrir3}>+ Info</button>
+                    <div className='button__wrappet'>
+                        <button className="category__button" onClick={abrir3}>+</button>
+                        <button onClick={irAccesorios}> ver </button>
+                    </div>
                 </div>
             </div>
         </div>

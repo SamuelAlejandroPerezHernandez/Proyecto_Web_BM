@@ -1,3 +1,30 @@
+.nav_link{
+    text-decoration: none;
+    font-size: clamp(0.5rem, 1.5vw, 2rem);
+    color: rgb(255, 255, 255);
+    text-align: start;
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bungee-regular {
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-unique {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
 @media(max-width: 700px){
 
 .web__header{
@@ -567,25 +594,6 @@ button:hover{
     overflow-x: clip;
 }
 
-.web__header::after{
-    content:"";
-    position: absolute;
-    left: 0; right: 0; bottom: -1px;
-    height: 3px;
-    background: linear-gradient(90deg,
-        #ff007a, #00ffea, #7c5cff, #ffea00, #ff007a
-    );
-    background-size: 300% 100%;
-    animation: neon-scan 6s linear infinite;
-    filter: drop-shadow(0 0 10px rgba(0,255,234,0.7));
-    pointer-events: none;
-}
-
-@keyframes neon-scan{
-    0%   { background-position: 0% 0; }
-    100% { background-position: 300% 0; }
-}
-
 .header__presentation{
     display: flex;
     flex-direction: row;
@@ -605,17 +613,18 @@ button:hover{
 }
 
 .web__name{
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-family: "Bungee", sans-serif;
+    font-size: clamp(2rem, 2.5vw, 3rem);
     color: rgb(255, 255, 255);
     text-align: center;
     margin: 0;
-    text-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .web__name span{
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
-    0 0 20px rgba(255, 255, 255, 0.6),
-    0 0 30px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 
+    0 0 12px rgba(255, 255, 255, 0.3),
+    0 0 16px rgba(255, 255, 255, 0.2);
 }
 
 .buscador__menu{
@@ -634,8 +643,6 @@ button:hover{
     width: clamp(180px, 80%, 700px);
     height: clamp(10px, 3vw, 40px);
 }
-
-/*-----*/
 
 .input__search{
     width: 100%;
@@ -675,8 +682,6 @@ button:hover{
     cursor: pointer;
 }
 
-/*-----*/
-
 .input__search::placeholder{
     color: rgb(255, 68, 0);
 }
@@ -705,6 +710,9 @@ button:hover{
     height: auto;
 }
 
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
 .drop__down{
     background-color: rgb(0, 0, 0);
     display: flex;
@@ -720,7 +728,6 @@ button:hover{
     padding: 0;
     margin: 0;
     right: 0;
-    /*box-shadow: 0 0 10px rgb(255, 255, 255);*/
     transition: max-height .3s ease;
 }
 
@@ -752,7 +759,7 @@ button:hover{
     width: 70%;
     top: 100%;
     height: 3px;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 217, 0);
 }
 
 .user__foto{
@@ -763,7 +770,8 @@ button:hover{
 }
 
 .user__name{
-    font-size: clamp(1rem, 3.5vw, 2rem);
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(1rem, 1.2vw, 2rem);
     color: rgb(255, 255, 255);
     text-align: center;
     text-wrap: nowrap;
@@ -779,19 +787,45 @@ button:hover{
     height: auto;
     padding: 1rem;
     margin: 0;
-    gap: 0.5rem;
+    gap: 2.5rem;
+}
+
+.imgContainer{
+    display: flex;
+    width: clamp(5px, 15%, 70px);
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+}
+
+.nav__img{
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
+
+.nav_link{
+    font-family: "Bungee", sans-serif;
+    text-decoration: none;
+}
+
+.nav_link:hover, .nav_item a:hover {
+    text-decoration: none;
 }
 
 .nav_item{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
     height: auto;
     padding: 0;
     margin: 0;
     position: relative;
+    gap: 5%;
+    cursor: pointer;
 }
 
 .nav_item::after{
@@ -807,27 +841,17 @@ button:hover{
 
 
 .nav_item:hover{
-    background-color: rgba(144, 144, 144, 0.363);
+    background-color: rgba(0, 0, 0, 0.363);
     padding-left: 3rem;
     transition: transform 1.5s ease-in-out, background-color .6s ease;
     transition: padding-left .6s ease;
     transform: scale(1.3);
 }
 
-.nav_link{
-    text-decoration: none;
-    font-size: clamp(0.5rem, 1.5vw, 2rem);
-    color: rgb(255, 255, 255);
-    text-align: start;
-}
+/*------------------------------------------------------------------------------------------------------------------------------*/
 
 #hero{
-    background-image: linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.2)
-    )
-    , url("/Img/New_And_Last_Banner.png");
+    background-image: url("/Img/New_And_Last_Banner.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -839,50 +863,74 @@ button:hover{
     text-align: center;
     width: 100%;
     height: 95vh;
-    padding: 1.5%;
+    padding-right: 20%;
     overflow-x: clip;
 }
 
+.heroWrapper {
+    width: 70%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #hero h1{
-    font-size: clamp(2rem, 5.5vw, 3rem);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(1rem, 4vw, 5rem);
+    letter-spacing: 0.00001em;
+    line-height: 1.5;
     padding-bottom: 5%;
     text-wrap: nowrap;
+    color: rgb(255, 255, 255); 
 }
 
 #hero span{
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 
-    0 0 20px rgba(255, 0, 0, 0.6),
-    0 0 30px rgba(255, 0, 0, 0.4);
+    font-family: "Bebas Neue", sans-serif;
+    color: rgb(255, 196, 0);
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.2), 
+    0 0 8px rgba(255, 255, 255, 0.15),
+    0 0 12px rgba(255, 255, 255, 0.1);
 }
 
 .button_container {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    padding-left: 17%;
+    align-items: center;
+    
 }
 
-button{
-    background-color: rgb(0, 0, 0);
-    border: 5px solid rgb(255, 0, 0);
-    color: rgb(255, 255, 255);
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
+button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: rgb(0, 0, 0); 
+    border: 2px solid rgb(255, 215, 0); 
+    color: rgb(255, 255, 255); 
     font-size: 1.5em;
     font-weight: bold;
-    padding: 10px 20px;
+    padding: 12px 25px; 
     border-radius: 50px;
-    border: 1 solid rgba(0, 0, 0, 0.5);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s, transform 0.3s; 
 }
 
-button:hover{
-    background-color: rgb(165, 33, 33);
+button:hover {
+    background-color: rgb(255, 215, 0); 
+    color: rgb(0, 0, 0); 
+    transform: scale(1.1); 
+}
+    
+button:active {
+    transform: scale(1); 
 }
 
-
+/*------------------------------------------------------------------------------------------------------------------------------*/
 
 .categories{
-    background-image: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),  /* oscurece */
-    url("/Img/back_coin.png");
+    background-image: 
+    url("/Img/categorias_buhito8.png");
     background-size: cover; 
     background-position: center;
     background-attachment: fixed;
@@ -893,7 +941,7 @@ button:hover{
     width: 100%;
     height: auto;
     padding-top: 3%;
-    padding-bottom: 3%;
+    padding-bottom: 7%;
     margin: 0;
 }
 
@@ -915,7 +963,7 @@ button:hover{
     align-items: center;
     width: 100%;
     height: auto;
-    gap: 2rem;
+    gap: 7rem;
 }
 
 .categories__title{
@@ -928,15 +976,16 @@ button:hover{
 }
 
 .categories__title h2{
+    font-family: "Bebas Neue", sans-serif;
     font-size: clamp(1rem, 7vw, 3rem);
     color:rgb(255, 255, 255);
     text-align: center;
     text-wrap: nowrap;
     margin: 0;
     padding: 0;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
-    0 0 20px rgba(255, 255, 255, 0.6),
-    0 0 30px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0), 
+    0 0 20px rgba(255, 255, 255, 0.308),
+    0 0 30px rgba(255, 255, 255, 0.164);
 }
 
 .category{
@@ -954,14 +1003,14 @@ button:hover{
     padding: 2%;
     gap: 2vw;
 
-    border: 1px solid rgba(255,255,255,.12);           /* borde sutil para definición */
+    border: 1px solid rgba(255,255,255,.12);           
     box-shadow:
-    0 2px 6px rgba(0,0,0,.25),                       /* sombra base */
+    0 2px 6px rgba(0,0,0,.25),                       
     inset 0 1px 2px rgba(255,255,255,.06);
 }
 
 .category.active{
-    background-color: rgba(121, 121, 121, 0.738);
+    background-color: rgba(75, 75, 75, 0.762);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -977,35 +1026,20 @@ button:hover{
     padding: 4%;
 }
 
-.category:hover{
-    transform: scale(1.05);
-    background-color: rgba(143, 143, 143, 0.738);
-    box-shadow:
-    0 4px 10px rgba(0,0,0,.20),        
-    0 0 14px rgba(255,213,74,.35),      
-    0 0 28px rgba(255,213,74,.22); 
-}
-
-.category:hover h3{
-    text-shadow: 
-        0 0 10px rgba(255, 55, 0, 0.9),   
-        0 0 30px rgba(255, 157, 0, 0.5),
-        0 0 40px rgba(238, 255, 0, 0.4);
-    color: rgb(195, 255, 0);
-    
-}
-
 .category h3{
+    font-family: "Bebas Neue", sans-serif;
     font-size: clamp(2.5rem, 4.5vw, 3rem);
     color:rgb(255, 255, 255);
     text-align: center;
     text-wrap: wrap;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
-    0 0 20px rgba(255, 255, 255, 0.6),
-    0 0 30px rgba(255, 255, 255, 0.4);
+
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 
+    0 0 12px rgba(255, 255, 255, 0.3),
+    0 0 16px rgba(255, 255, 255, 0.2);
 }
 
 .category_paragraph{
+    font-family: "Roboto", sans-serif;
     display: none;
     font-size: clamp(1rem, 1.5vw, 3rem);
     color:rgb(255, 255, 255);
@@ -1017,8 +1051,56 @@ button:hover{
     display: block;
 }
 
+.category:hover{
+    transform: scale(1.15);
+    background-color: rgba(89, 0, 255, 0.821);
+    box-shadow:
+    0 4px 10px rgba(255, 247, 0, 0.499),        
+    0 0 14px rgba(89, 0, 255, 0.552),      
+    0 0 28px rgba(8, 0, 255, 0.479); 
+}
+
+.category:hover h3{
+    font-family: "Bebas Neue", sans-serif;
+    text-shadow: 
+        0 0 10px rgba(106, 0, 255, 0.9),   
+        0 0 30px rgba(98, 0, 255, 0.5),
+        0 0 40px rgba(111, 0, 255, 0.4);
+    color: rgb(248, 248, 249);
+    
+}
+
+.category button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: rgb(0, 0, 0); 
+    border: 2px solid rgb(115, 0, 255); 
+    color: rgb(255, 255, 255); 
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 12px 25px; 
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.category button:hover {
+    background-color: rgb(149, 0, 255); 
+    color: rgb(255, 255, 255); 
+    transform: scale(1.1); 
+    border: 2px solid rgb(0, 0, 0)
+}
+
+.button__wrappet{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5%;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
 .footer__web{
-    background-color: rgb(29, 29, 29);
+    background-color: rgb(26, 26, 26);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1031,7 +1113,7 @@ button:hover{
 }
 
 .back__container{
-    background-color: rgb(20, 20, 20);
+    background-color: rgb(18, 18, 18);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1045,6 +1127,7 @@ button:hover{
     text-decoration: none;
     color: rgb(255, 255, 255);
     cursor: pointer;
+    text-decoration: none;
 }
 
 .footer__wrapper{
@@ -1074,9 +1157,10 @@ button:hover{
     text-wrap: wrap;
     margin-bottom: 25px;
     padding: 0;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
-    0 0 20px rgba(255, 255, 255, 0.6),
-    0 0 30px rgba(255, 255, 255, 0.4);
+    text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.4),
+    0 0 10px rgba(255, 255, 255, 0.3),
+    0 0 15px rgba(255, 255, 255, 0.2);
     position: relative;
 }
 
@@ -1085,7 +1169,7 @@ button:hover{
     position: absolute;
     width: 60%;
     height: 3px;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 157, 0);
     top: 100%;
     left: 0;
 }
@@ -1115,11 +1199,12 @@ button:hover{
 }
 
 .footer__list a:hover{
-    text-shadow: 
-        0 0 10px rgba(255, 55, 0, 0.9),   
-        0 0 30px rgba(255, 157, 0, 0.5),
-        0 0 40px rgba(238, 255, 0, 0.4);
     color: rgb(195, 255, 0);
+    text-shadow:
+    0 0 5px rgba(255, 157, 0, 0.6),
+    0 0 10px rgba(255, 255, 0, 0.4),
+    0 0 15px rgba(238, 255, 0, 0.3);
+    text-decoration: none;
 }
 
 .contact__wrapper{
@@ -1140,7 +1225,7 @@ button:hover{
     width: clamp(20px, 20%, 55px);
     height: auto;
     border-radius: 50%;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 
     border: 1px solid rgba(255,255,255,.12);          
     box-shadow:

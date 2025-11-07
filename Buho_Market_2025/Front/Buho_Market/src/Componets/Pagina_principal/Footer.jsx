@@ -29,12 +29,6 @@ function Footer() {
                     <li>
                         <a href="#">Seguridad / Evita estafas</a>
                     </li>
-                    <li>
-                        <a href="#">Devoluciones y disputas</a>
-                    </li>
-                    <li>
-                        <a href="#">Reportar usuario o publicación</a>
-                    </li>
                 </ul>
             </div>
             <div className="contact__section">
@@ -50,7 +44,7 @@ function Footer() {
                         <img src="/Img/youtube.png" alt="linkedin"/>
                     </div >
                     <div className="img_social_network">
-                        <img src="/Img/signo-de-twitter.png"/>
+                        <img src="/Img/X.png"/>
                     </div>
                     <div className="img_social_network">
                         <img src="/Img/whatsapp.png"/>
