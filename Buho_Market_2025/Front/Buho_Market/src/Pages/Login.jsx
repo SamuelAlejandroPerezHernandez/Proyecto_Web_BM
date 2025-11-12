@@ -75,7 +75,7 @@ export default function Login() {
       <h1 className="p1">BUHO</h1>
       <h1 className="p2">MARKET</h1>
 
-      {/* Formulario */}
+     { /* Formulario */}
       <div className="formulario">
         <h1>Iniciar sesión</h1>
 

@@ -22,7 +22,6 @@ function Header() {
     }
 
     const [user, setUser] = useState("usuario");
-    /*const [userImage, setUserImage] = useState("/Img/user.png");*/
 
     const usuario = async () => {
         const resultado = await supabase
@@ -31,7 +30,6 @@ function Header() {
 
         if(resultado.data !== null && resultado.data.user !==null) {
             const user = resultado.data.user;
-            /*let userIMG = "/Img/user.png";*/
             let nombreUsuario = 'nombre usuario'
 
             if(user.user_metadata && user.user_metadata.full_name){
@@ -42,12 +40,7 @@ function Header() {
                 nombreUsuario = partes[0];
             }
 
-            /*if(user.user_metadata && user.user_metadata.avatar_url){
-                userIMG = user.user_metadata.avatar_url
-            }*/
-
             setUser(nombreUsuario);
-            /*setUserImage(userIMG)*/
         }
         else {
             setUser('user Name')
@@ -154,7 +147,7 @@ function Header() {
                             <img className="nav__img" src="/Img/usuario.png"/>
                         </div>
                         
-                        <a className="nav_link" href="#">Perfil</a>
+                        <Link className="nav_link" to="/perfil">Perfil</Link> {/* ✅ Modificado */}
                     </li>
                     <li className="nav_item">
                         <div className="imgContainer">
@@ -181,8 +174,6 @@ function Header() {
             </div>
         </nav>
     </header>
-
-
     );
 }
 
