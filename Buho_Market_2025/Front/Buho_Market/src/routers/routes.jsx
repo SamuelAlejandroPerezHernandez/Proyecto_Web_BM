@@ -6,6 +6,7 @@ import RecuperearContrasena from '../Pages/RecuperarContrasena';
 import Publicaciones from '../Pages/Publicaciones.jsx';
 import VerPublicaciones from '../Pages/VerPublicaciones.jsx';
 import PerfilUsuario from '../Pages/PerfilUsuario'; // Ajusta la ruta según donde tengas el archivo
+import Informacion from '../Pages/Informacion.jsx';
 
 export default function MyRoutes() {
   return (
@@ -18,6 +19,7 @@ export default function MyRoutes() {
       <Route path="/ver-publicaciones" element={<VerPublicaciones/>}/>
       <Route path="/ver-publicaciones/:categoria" element={<VerPublicaciones/>}/>
       <Route path="/perfil" element={<PerfilUsuario />} /> {/* ✅ Nueva ruta */}
+      <Route path="/informacion" element={<Informacion />} />
     </Routes>
   );
 }
