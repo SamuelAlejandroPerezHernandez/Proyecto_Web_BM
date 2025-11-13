@@ -2,7 +2,7 @@ import { UserAuth } from "../../context/AuthContext.jsx";
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase/supabase.js";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function Header() {
     const { signout } = UserAuth();
@@ -53,9 +53,25 @@ function Header() {
 
     const [isOpen, setIsOpen] = useState(false);
 
+     useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (isOpen && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen]);
+     
+
     const DropDown = () => {
         setIsOpen(!isOpen)
     }
+
+    const dropdownRef = useRef(null);
 
     let menuOpenDisplay = "none";
     let menuCloseDisplay = "block";
@@ -128,7 +144,7 @@ function Header() {
         </div>
 
 
-        <nav className={ dropdownDisplay }>
+       <nav className={dropdownDisplay} ref={dropdownRef}>
             <div className="drop__down__wrapper">
                 <div className="user__info">
                     <img className="user__foto" src="/Img/user.png"/>
