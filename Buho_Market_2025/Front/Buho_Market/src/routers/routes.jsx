@@ -7,6 +7,7 @@ import Publicaciones from '../Pages/Publicaciones.jsx';
 import VerPublicaciones from '../Pages/VerPublicaciones.jsx';
 import PerfilUsuario from '../Pages/PerfilUsuario'; // Ajusta la ruta según donde tengas el archivo
 import Informacion from '../Pages/Informacion.jsx';
+import NotFound from '../Pages/NotFound.jsx';
 
 export default function MyRoutes() {
   return (
@@ -20,6 +21,7 @@ export default function MyRoutes() {
       <Route path="/ver-publicaciones/:categoria" element={<VerPublicaciones/>}/>
       <Route path="/perfil" element={<PerfilUsuario />} /> {/* ✅ Nueva ruta */}
       <Route path="/informacion" element={<Informacion />} />
+      <Route path= "*" element={<NotFound/>}></Route>
     </Routes>
   );
 }

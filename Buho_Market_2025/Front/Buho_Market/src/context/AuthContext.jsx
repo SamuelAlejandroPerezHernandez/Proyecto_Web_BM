@@ -38,11 +38,11 @@ export const AuthContextProvider  = ({ children }) => {
             if (session == null) {
                 setUser(null);
                 navigate("/login", { replace: true });
-            } else {
-                setUser(session?.user);
-                console.log("data del usuario", session?.user.user_metadata);
-                navigate("/", { replace: true });
+            }  else {
+    setUser(session?.user);
+        console.log("data del usuario", session?.user.user_metadata);
             }
+            
         }
         )
         return () => {

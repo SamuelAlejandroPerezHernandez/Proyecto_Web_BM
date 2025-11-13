@@ -6,7 +6,7 @@ export default function OlvidasteContrasena() {
   const navigate = useNavigate();
 
   const handleIrAInicio = () => {
-    navigate('/');  
+    navigate('/login');  
   };
 
   const handleSubmit = (e) => {

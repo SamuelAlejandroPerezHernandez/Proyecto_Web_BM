@@ -110,7 +110,7 @@ function Publicacion() {
 
     return (
 
-        <form onSubmit={handleSubmit}>
+        <form1 onSubmit={handleSubmit}>
             <div>
                 <input
                     type="file"
@@ -152,7 +152,7 @@ function Publicacion() {
 
                 <button type="submit">Publicar</button>
             </div>
-        </form>
+        </form1>
 
 
     )

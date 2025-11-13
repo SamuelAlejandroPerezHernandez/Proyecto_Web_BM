@@ -6,7 +6,7 @@ const Registrarse = () => {
   const navigate = useNavigate();  
 
   const handleLoginRedirect = () => {
-    navigate('/'); //   Navegación SPA (no recarga)
+    navigate('/login'); //   Navegación SPA (no recarga)
   };
 
   return (
