@@ -163,7 +163,7 @@ function Header() {
                             <img className="nav__img" src="/Img/usuario.png"/>
                         </div>
                         
-                        <Link className="nav_link" to="/perfil">Perfil</Link> {/* ✅ Modificado */}
+                        <Link className="nav_link" to="/perfil">Perfil</Link> {/* Modificado */}
                     </li>
                     <li className="nav_item">
                         <div className="imgContainer">

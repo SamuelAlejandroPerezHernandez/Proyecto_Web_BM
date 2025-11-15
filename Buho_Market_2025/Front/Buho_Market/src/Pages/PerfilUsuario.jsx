@@ -1,125 +1,190 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// PerfilUsuario.jsx
+import { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import '../Css/PerfilUsuario.css';
+import Footer from "../Componets/Pagina_principal/Footer";
+import { supabase } from '../supabase/supabase'; 
 
-export default function PerfilUsuario() {
-  const navigate = useNavigate(); // ✅ Hook para navegar
+const PerfilUsuario = () => {
+  const [user, setUser] = useState(null);
+  const [publicaciones, setPublicaciones] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  // 🔹 Función al presionar el botón
-  const handleAgregarProductoClick = () => {
-    navigate('/publicaciones'); // Navega a Publicaciones.jsx
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        //  Obtener usuario autenticado
+        const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
+        if (authError || !authUser) {
+          navigate('/login');
+          return;
+        }
+
+        // Extraer datos
+        const userId = authUser.id;
+        let nombre = authUser.user_metadata?.full_name || authUser.email?.split('@')[0] || 'Usuario';
+        let avatarUrl = authUser.user_metadata?.picture || '/Img/user.png';
+
+        setUser({ id: userId, nombre, avatarUrl });
+
+        //  Cargar publicaciones
+        const { data: pubs, error: pubError } = await supabase
+        .from('publicaciones')
+        .select('*')
+        .eq('usuario_id', userId)   
+        .order('created_at', { ascending: false });
+
+        if (pubError) {
+          console.error('Error al cargar publicaciones:', pubError);
+          setPublicaciones([]);
+        } else {
+          setPublicaciones(pubs || []);
+        }
+      } catch (error) {
+        console.error('Error inesperado:', error);
+        navigate('/login');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [navigate]);
+
+  if (loading) {
+    return (
+      <div className="perfil-container">
+        <main style={{ textAlign: 'center', padding: '2rem' }}>
+          Cargando perfil...
+        </main>
+      </div>
+    );
+  }
+
+  // Función para formatear fecha
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
   };
 
   return (
     <div className="perfil-container">
-      <link
-        href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&display=swap"
-        rel="stylesheet"
+      {/* HEADER */}
+     <header>
+  <div className="header-contenido">
+    <Link to="/" className="logo-link">
+      <img 
+        src="/Img/new_logo.jpeg" 
+        alt="Buho Market" 
+        className="logo"
       />
-
-      <header>
-        <div className="header-contenido">
-          <img
-            src="/Img/new_logo.jpeg"
-            alt="Logo Marketplace UCA"
-            className="logo"
-            width="40"
-            height="40"
-          />
-          <h1>Perfil de usuario</h1>
-        </div>
-      </header>
+    </Link>
+    <h1>Perfil</h1>
+  </div>
+</header>
 
       <main>
-        {/* Resumen del usuario */}
-        <section aria-labelledby="resumen-usuario">
-          <h2 id="resumen-usuario">🪪 Resumen del usuario</h2>
-          <article>
-            <img
-              src="/Img/Buho_pensando.png"
-              alt="Avatar del usuario"
-              width="110"
-              height="110"
-            />
-            <div>
-              <h3 className="nombre-usuario">[Nombre completo]</h3>
-              <p><strong>Carrera o facultad:</strong> [Carrera]</p>
-              <p><strong>Descripción breve:</strong> [Descripción personal]</p>
-              <button>Editar perfil</button>
-              <span
-                aria-label="Cuenta verificada por la UCA"
-                title="Cuenta verificada UCA"
-              >
-                ✅ Cuenta verificada UCA
-              </span>
-            </div>
-          </article>
-        </section>
 
-        {/* Mis publicaciones */}
-        <section aria-labelledby="mis-publicaciones">
-          <h2 id="mis-publicaciones">🛍️ Mis publicaciones</h2>
+  <section className="perfil-doble-columna">
+  {/* COLUMNA IZQUIERDA*/}
+  <div className="perfil-info">
+    <img 
+      src={user.avatarUrl} 
+      alt="Foto de perfil" 
+      onError={(e) => {
+    e.target.onerror = null; // Evita bucle
+    e.target.src = '/Img/user.png';
+    }
+    }
+    />
+    <div>
+      <h2 className="nombre-usuario">{user.nombre}</h2>
+      <p><strong>ID:</strong> {user.id.substring(0, 8)}...</p>
+      <span title="Cuenta verificada UCA">✓ Cuenta verificada</span>
+    </div>
+  </div>
+
+  {/* COLUMNA DERECHA */}
+  <div className="configuracion-cuenta">
+    <h2>Configuración de Cuenta</h2>
+    <div className="config-opciones">
+      <button>Editar perfil</button>
+      <button>Cambiar contraseña</button>
+      <button onClick={() => {
+        supabase.auth.signOut();
+        navigate('/login');
+      }}>Cerrar sesión</button>
+    </div>
+  </div>
+</section>
+
+        {/* MIS PUBLICACIONES */}
+        <section id="mis-publicaciones">
+          <h2>Mis Publicaciones</h2>
+
+          {/* Filtros de estado */}
           <div className="filtros-estado">
             <label>
-              <input type="radio" name="filtro-estado" value="todos" defaultChecked /> Todos
+              <input type="radio" name="estado" defaultChecked /> Todas
             </label>
             <label>
-              <input type="radio" name="filtro-estado" value="disponible" /> Disponibles
+              <input type="radio" name="estado" /> Disponibles
             </label>
             <label>
-              <input type="radio" name="filtro-estado" value="vendido" /> Vendidos
-            </label>
-            <label>
-              <input type="radio" name="filtro-estado" value="pausado" /> Pausados
+              <input type="radio" name="estado" /> Vendidas
             </label>
           </div>
 
-          <div id="lista-publicaciones">
-            <p id="mensaje-sin-publicaciones">No tienes publicaciones aún.</p>
-          </div>
+          {publicaciones.length === 0 ? (
+            <p id="mensaje-sin-publicaciones">No has publicado nada aún.</p>
+          ) : (
+            <div id="lista-publicaciones">
+              {publicaciones.map((pub) => (
+                <div key={pub.id} className="publicacion">
+                  {pub.imagen_url ? (
+                    <img src={pub.imagen_url} alt={pub.titulo} />
+                  ) : (
+                    <div style={{ width: '85px', height: '85px', backgroundColor: '#222', borderRadius: '8px' }} />
+                  )}
+                  <div>
+                    <h3>{pub.titulo}</h3>
+                    <p>{pub.descripcion?.substring(0, 100)}...</p>
+                    <small>{formatDate(pub.created_at)}</small>
+                    <span className={`estado ${pub.estado || 'disponible'}`}>
+                      {pub.estado || 'Disponible'}
+                    </span>
+                    <div className="acciones-publicacion">
+                      <button>Editar</button>
+                      <button>Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
-          {/* 🔹 Botón que navega a Publicaciones.jsx */}
-          <button
-            id="btn-agregar-producto"
-            onClick={handleAgregarProductoClick}
-          >
-            Agregar nuevo producto
+          <button id="btn-agregar-producto" onClick={() => navigate('/publicaciones')}>
+            + Agregar nuevo producto
           </button>
         </section>
 
-        {/* Reputación */}
-        <section aria-labelledby="reputacion">
-          <h2 id="reputacion">⭐ Reputación</h2>
-          <div>
-            <p>
-              <strong>Calificación promedio:</strong>{' '}
-              <span id="calificacion-promedio">[0.0]</span>
-            </p>
-            <p>
-              <strong>Ventas exitosas:</strong>{' '}
-              <span id="ventas-exitosas">[0]</span>
-            </p>
-            <h3>Comentarios recientes</h3>
-            <div id="comentarios-recientes">
-              <p id="sin-comentarios">Aún no tienes calificaciones.</p>
-            </div>
-          </div>
+        {/* REPUTACIÓN */}
+        <section id="reputacion">
+          <h2>Reputación</h2>
+          <p id="sin-comentarios">Aún no tienes reseñas.</p>
         </section>
 
-        {/* Configuración de cuenta */}
-        <section aria-labelledby="configuracion-cuenta">
-          <h2 id="configuracion-cuenta">⚙️ Configuración de cuenta</h2>
-          <div className="config-opciones">
-            <button>Cambiar contraseña</button>
-            <button>Eliminar cuenta</button>
-            <button>Cerrar sesión</button>
-          </div>
-        </section>
       </main>
-
-      <footer>
-        <p>© 2025 Buho Market. Todos los derechos reservados.</p>
-      </footer>
+      
+      <Footer/>
     </div>
+    
   );
-}
+  
+};
+
+export default PerfilUsuario;
