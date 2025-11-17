@@ -24,9 +24,9 @@ const PerfilUsuario = () => {
         // Extraer datos
         const userId = authUser.id;
         let nombre = authUser.user_metadata?.full_name || authUser.email?.split('@')[0] || 'Usuario';
-        let avatarUrl = authUser.user_metadata?.picture || '/Img/user.png';
+        let avatar_url = authUser.user_metadata?.picture || '/Img/user.png';
 
-        setUser({ id: userId, nombre, avatarUrl });
+        setUser({ id: userId, nombre, avatar_url });
 
         //  Cargar publicaciones
         const { data: pubs, error: pubError } = await supabase
@@ -93,7 +93,7 @@ const PerfilUsuario = () => {
   {/* COLUMNA IZQUIERDA*/}
   <div className="perfil-info">
     <img 
-      src={user.avatarUrl} 
+      src={user.avatar_url} 
       alt="Foto de perfil" 
       onError={(e) => {
     e.target.onerror = null; // Evita bucle
